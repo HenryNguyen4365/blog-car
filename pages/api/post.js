@@ -10,13 +10,17 @@ export default async function handler(req, res) {
     await Posts.findOneAndUpdate(
       {
         created_at: format(new Date(), "MM/dd/yyyy"),
-        title: "Blog",
+        title: "Article",
       },
       {
         author: {
           name: data.author.name,
           image: data.author.image,
         },
+        thumbnail: data.thumbnail,
+        description: data.description,
+        slug: data.slug,
+        url: data.url,
       },
       { upsert: true, timestamp: { created_at: false, updated_at: true } }
     );

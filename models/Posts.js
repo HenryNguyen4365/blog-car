@@ -7,6 +7,9 @@ const PostsSchema = new mongoose.Schema(
     title: {
       type: String,
     },
+    thumbnail: {
+      type: String,
+    },
     author: {
       name: {
         type: String,

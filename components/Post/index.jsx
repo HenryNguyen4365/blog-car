@@ -1,23 +1,31 @@
-import axios from "axios";
+import Link from "next/link";
 
-const Post = () => {
-  const postData = async () => {
-    try {
-      await axios.post("/api/post", {
-        author: {
-          name: "Henry",
-          image:
-            "https://vcdn-sohoa.vnecdn.net/2022/01/19/HDKJF44H75JTTLUAFCCPRDZ5LI-2427-1642564662.jpg",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const Post = ({ post }) => {
   return (
-    <div>
-      <button onClick={postData}>Post</button>
-    </div>
+    <Link href={`/post/${post.slug}`}>
+      <div className="border group cursor-pointer overflow-hidden">
+        <img
+          src={post.thumbnail}
+          alt={post.title}
+          className="h-60 w-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out"
+        />
+        <div className="flex justify-between p-5 bg-white">
+          <div>
+            <p>{post.title}</p>
+            <p>
+              {post.description} by {post.author.name}
+            </p>
+          </div>
+          <div>
+            <img
+              src={post.author.image}
+              alt={post.author.name}
+              className="h-8 w-12 rounded-full"
+            />
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
 
